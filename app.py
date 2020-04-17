@@ -32,7 +32,7 @@ def kill():
 
 
 #Prints the input messages
-def writer():
+def spam():
     global msg
     keyboard = Controller()
 
@@ -76,15 +76,32 @@ def loop():
             break
 
 
-#starts the thread to loop the message
-wttd = threading.Thread(target=loop, name='thread-writer1')
 
-#################==MAIN==#################
-def Main():
-    writer()
+#starts the thread to loop the message
+wttd = threading.Thread(target=loop, name='thread-spam1')
+
+
+def exespam():
+    spam()
     wttd.start()
     listening()
     kill()
+
+#################==MAIN==#################
+def Main():
+
+    print('Clear target screen(1) | Spam target screen(2)')
+
+    option = input()
+    
+    if option == 1:
+        keyboard = Controller()
+        for i in range(50):
+            keyboard.press(Key.enter)
+    elif option == 2:
+        exespam()
+
+    
 
 
 Main()
